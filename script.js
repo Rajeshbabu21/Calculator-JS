@@ -12,11 +12,13 @@ let ram = ""
 
 // Retrieve stored values on page load
 window.onload = function() {
-  if (localStorage.getItem("mainvalue") !== null) {
-    a = JSON.parse(localStorage.getItem("mainvalue"));
+  if (localStorage.getItem("mainvalue") !== null)  // to check if the value is not null 
+   {
+    a = JSON.parse(localStorage.getItem("mainvalue"));  // a is the whole value
   }
-  if (localStorage.getItem("calculation") !== null) {
-    cal = JSON.parse(localStorage.getItem("calculation"));
+  if (localStorage.getItem("calculation") !== null)   // to check if the value is not null 
+     {
+    cal = JSON.parse(localStorage.getItem("calculation"));  // cal is the single value that comes from  the buttons 
   }
   valuedisplay();
 };
@@ -25,7 +27,7 @@ window.onload = function() {
 function calculate(param)
 {
   cal += param;
-  valuedisplay();
+  valuedisplay();  // to display in the calculator
   // console.log(cal)
 }
 
@@ -36,7 +38,7 @@ function res()
 {
   a = eval(cal);
   valuedisplay();
-  updateLocalStorage();
+  updateLocalStorage();  // to store
   
 }
 
@@ -44,11 +46,11 @@ function res()
 // this function is to clear the value
 function clearval()
 {
+
+  // after clearing the function
   cal = "";
-  // console.log(cal)
-  a = undefined;
+  a = undefined; 
   ram = ""
-  // console.log("it is cleared");
   document.querySelector(".display-content").innerHTML = "";
   updateLocalStorage();
 }
@@ -57,18 +59,19 @@ function clearval()
 
 function valuedisplay() {
   let html = `<p>${cal}`;
-  if (a !== undefined) {
+  if (a !== undefined)  // if not null add to the html else not
+    {
     html += ` = ${a}`;
   }
   html += `</p>`;
   ram = html;
 
-  document.querySelector(".display-content").innerHTML = ram;
+  document.querySelector(".display-content").innerHTML = ram;  // content to dispaly
 }
 
 
 
 function updateLocalStorage() {
-  localStorage.setItem("mainvalue", JSON.stringify(a));
-  localStorage.setItem("calculation", JSON.stringify(cal));
+  localStorage.setItem("mainvalue", JSON.stringify(a));  // whole value
+  localStorage.setItem("calculation", JSON.stringify(cal));  // single value
 }
